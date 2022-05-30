@@ -1,13 +1,9 @@
 package br.com.petshop.controller;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
-import br.com.petshop.dao.ClienteDAO;
 import br.com.petshop.model.ClienteUser;
-import br.com.petshop.util.Mensagem;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -51,6 +47,32 @@ public class HomeMBean {
 	
 	public String atualizarAnimal() {
 		return "/animal/atualizarAnimal?faces-redirect=true";
+	}
+	
+	/*ROTAS SERVIÇOS*/
+	public String novoServico() {
+		return "/servico/cadastroServico?faces-redirect=true";
+	}
+	
+	public String listServicos() {
+		return "/servico/listServicos?faces-redirect=true";
+	}
+	
+	public String atualizarServico() {
+		return "/servico/atualizarServico?faces-redirect=true";
+	}
+	
+	/*ROTAS PRODUTOS*/
+	public String novoProduto() {
+		return "/produto/cadastroProduto?faces-redirect=true";
+	}
+	
+	public String listProdutos() {
+		return "/produto/listProdutos?faces-redirect=true";
+	}
+	
+	public String atualizarProduto() {
+		return "/produto/atualizarProduto?faces-redirect=true";
 	}
 	
 }

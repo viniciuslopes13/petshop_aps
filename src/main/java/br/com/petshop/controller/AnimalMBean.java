@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import br.com.petshop.dao.AnimalDAO;
+import br.com.petshop.dao.GenericDAO;
 import br.com.petshop.model.Animal;
 import br.com.petshop.model.ClienteUser;
 import br.com.petshop.util.Mensagem;
@@ -40,9 +41,15 @@ public class AnimalMBean {
 	}
 	
 	public void adicionar() {
-		AnimalDAO animalDAO = new AnimalDAO();
+		/*AnimalDAO animalDAO = new AnimalDAO();
 		novoAnimal.setDono(dono);
 		animalDAO.salvar(novoAnimal);
+		novoAnimal = new Animal();
+		listAnimais = this.listar();
+		Mensagem.exibir(FacesMessage.SEVERITY_INFO, "Animal cadastrado com sucesso!");*/
+		GenericDAO genericDAO = new GenericDAO();
+		novoAnimal.setDono(dono);
+		genericDAO.salvar(novoAnimal);
 		novoAnimal = new Animal();
 		listAnimais = this.listar();
 		Mensagem.exibir(FacesMessage.SEVERITY_INFO, "Animal cadastrado com sucesso!");
