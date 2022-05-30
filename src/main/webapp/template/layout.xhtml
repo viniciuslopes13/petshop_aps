@@ -11,8 +11,9 @@
 
 	<header>
 		<h:form>
-			<p:growl id="messages" />
-
+			<p:messages id="messages" closable="true">
+        		<p:autoUpdate />
+    		</p:messages>
 			<p:menubar>
 			
 				<p:submenu label="Cliente" icon="pi pi-file">
@@ -34,10 +35,11 @@
 	</header>
 
 	<div id="conteudo">
+		<br/>
 		<ui:insert name="corpo" />
 	</div>
 
-	<footer> PetShop </footer>
+	<footer style="text-align: center"> © 2022 PetShop </footer>
 
 </h:body>
 </html>
