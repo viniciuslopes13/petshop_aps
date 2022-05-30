@@ -16,19 +16,19 @@
     		</p:messages>
 			<p:menubar>
 			
-				<p:submenu label="Cliente" icon="pi pi-file">
-					<p:menuitem value="Novo cliente" url="#" />
-				</p:submenu>
+				<p:menuitem value="Home" icon="pi pi-home" action="#{homeMBean.home}"/>
+								
+				<p:menuitem value="Cliente" icon="pi pi-users" action="#{homeMBean.listClientes}" />
 
-				<p:menuitem value="Animal" icon="pi pi-file"/>
+				<p:menuitem value="Animal" icon="pi pi-star"/>
 				
-				<p:menuitem value="Produto" icon="pi pi-file"/>
+				<p:menuitem value="Produto" icon="pi pi-shopping-cart"/>
 				
-				<p:menuitem value="Serviço" icon="pi pi-file"/>
+				<p:menuitem value="Serviço" icon="pi pi-cog"/>
 				
-				<p:menuitem value="Hotel" icon="pi pi-file"/>
+				<p:menuitem value="Hotel" icon="pi pi-map-marker"/>
 				
-				<p:menuitem value="Vacina" icon="pi pi-file"/>
+				<p:menuitem value="Vacina" icon="pi pi-heart"/>
 				
 			</p:menubar>
 		</h:form>
