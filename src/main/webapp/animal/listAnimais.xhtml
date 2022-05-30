@@ -1,0 +1,58 @@
+<ui:composition template="/template/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+		
+		<p:commandButton value="Novo Animal" action="#{homeMBean.novoAnimal}" style="margin-left:2.5%"/>
+
+		<p:dataTable id="dt-animais" var="animal" value="#{animalMBean.listAnimais}"
+		rows="10" paginator="true" paginatorPosition="bottom" style="width: 95%; margin: auto;padding-top: 20px;"
+		widgetVar="animalTable" filteredValue="#{animalMBean.listAnimais}" rowKey="#{animal.id}">
+		
+			<p:column headerText="ID">
+				<h:outputText value="#{animal.id}" />
+			</p:column>
+			
+			<p:column headerText="Nome">
+				<h:outputText value="#{animal.nome}" />
+			</p:column>
+		
+			<p:column headerText="Dono">
+				<h:outputText value="#{animal.dono.nome}" />
+			</p:column>
+			
+			<p:column>
+				<p:commandButton icon="pi pi-pencil" styleClass="edit-button rounded-button ui-button-info"
+					action="#{homeMBean.atualizarAnimal}">
+					<f:setPropertyActionListener value="#{animal}"
+						target="#{animalMBean.animalSelecionado}" />
+				</p:commandButton>
+				
+				<p:commandButton class="ui-button-danger rounded-button" style="margin-left:2%"
+					icon="pi pi-trash" update="dt-animais"
+					action="#{animalMBean.apagar}">
+					<f:setPropertyActionListener value="#{animal}"
+						target="#{animalMBean.animalSelecionado}" />
+					<p:confirm header="Confirmação"
+						message="Tem certeza que deseja apagar este cliente?"
+						icon="pi pi-info-circle" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					responsive="true" width="350">
+					<p:commandButton value="Cancelar" type="button"
+						styleClass="ui-confirmdialog-no ui-button-flat" />
+					<p:commandButton value="Apagar" type="button"
+						styleClass="ui-confirmdialog-yes" />
+				</p:confirmDialog>
+			</p:column>
+		
+		</p:dataTable>
+
+	</ui:define>
+
+</ui:composition>
