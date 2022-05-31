@@ -1,0 +1,26 @@
+<ui:composition template="/template/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+		<h:form>
+			<p:panel id="basic" header="Cadastro de Vacina"
+				style="margin-bottom:20px">
+				
+				<span class="ui-float-label" style="margin-bottom:20px"> 
+					<p:inputText id="descricao" value="#{vacinaMBean.novaVacina.descricao}" 
+					required="true" requiredMessage="Descricao: Campo Obrigatório."/> 
+					<p:outputLabel for="@previous" value="Descrição" />
+				</span>
+				
+				<p:commandButton value="Salvar" id="salvar" action="#{vacinaMBean.adicionar}" 
+				style="margin-right:20px;" styleClass="ui-priority-primary" update="@this basic"/>
+				
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

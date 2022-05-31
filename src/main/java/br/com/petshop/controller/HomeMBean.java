@@ -3,7 +3,6 @@ package br.com.petshop.controller;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import br.com.petshop.model.ClienteUser;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,12 +11,6 @@ import lombok.Setter;
 @ManagedBean
 @SessionScoped
 public class HomeMBean {
-
-	private ClienteUser cliente;
-	
-	public HomeMBean() {
-		cliente = new ClienteUser();
-	}
 	
 	public String home() {
 		return "/index?faces-redirect=true";
@@ -73,6 +66,19 @@ public class HomeMBean {
 	
 	public String atualizarProduto() {
 		return "/produto/atualizarProduto?faces-redirect=true";
+	}
+	
+	/*ROTAS VACINA*/
+	public String novaVacina() {
+		return "/vacina/cadastroVacina?faces-redirect=true";
+	}
+	
+	public String listVacinas() {
+		return "/vacina/listVacinas?faces-redirect=true";
+	}
+	
+	public String atualizarVacina() {
+		return "/vacina/atualizarVacina?faces-redirect=true";
 	}
 	
 }
