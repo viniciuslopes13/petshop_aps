@@ -81,4 +81,17 @@ public class HomeMBean {
 		return "/vacina/atualizarVacina?faces-redirect=true";
 	}
 	
+	/*ROTAS VAGA_HOTEL*/
+	public String novaVagaHotel() {
+		return "/vagaHotel/cadastroVagaHotel?faces-redirect=true";
+	}
+	
+	public String listVagasHotel() {
+		return "/vagaHotel/listVagasHotel?faces-redirect=true";
+	}
+	
+	public String atualizarVagaHotel() {
+		return "/vagaHotel/atualizarVagaHotel?faces-redirect=true";
+	}
+	
 }

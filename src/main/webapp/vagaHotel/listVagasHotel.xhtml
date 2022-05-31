@@ -1,0 +1,64 @@
+<ui:composition template="/template/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+		
+		<p:commandButton value="Nova Vaga" action="#{homeMBean.novaVagaHotel}" style="margin-left:2.5%"/>
+
+		<p:dataTable id="dt-vagasHotel" var="vagaHotel" value="#{vagaHotelMBean.listVagasHotel}"
+		rows="10" paginator="true" paginatorPosition="bottom" style="width: 95%; margin: auto;padding-top: 20px;"
+		widgetVar="vagaHotelTable" filteredValue="#{vagaHotelMBean.listVagasHotel}" rowKey="#{vagaHotel.id}">
+		
+			<p:column headerText="ID">
+				<h:outputText value="#{vagaHotel.id}" />
+			</p:column>
+			
+			<p:column headerText="Descrição">
+				<h:outputText value="#{vagaHotel.descricao}" />
+			</p:column>
+			
+			<p:column headerText="Status">
+				<h:outputText value="#{vagaHotel.status}" />
+			</p:column>
+		
+			<p:column headerText="Diária">
+				<h:outputText value="#{vagaHotel.valorDiaria}" >
+					<f:convertNumber minFractionDigits="2" type="currency"/>
+				</h:outputText>
+			</p:column>
+			
+			<p:column>
+				<p:commandButton icon="pi pi-pencil" styleClass="edit-button rounded-button ui-button-info"
+					action="#{homeMBean.atualizarVagaHotel}">
+					<f:setPropertyActionListener value="#{vagaHotel}"
+						target="#{vagaHotelMBean.vagaHotelSelecionada}" />
+				</p:commandButton>
+				
+				<p:commandButton class="ui-button-danger rounded-button" style="margin-left:2%"
+					icon="pi pi-trash" update="dt-vagasHotel"
+					action="#{vagaHotelMBean.apagar}">
+					<f:setPropertyActionListener value="#{vagaHotel}"
+						target="#{vagaHotelMBean.vagaHotelSelecionada}" />
+					<p:confirm header="Confirmação"
+						message="Tem certeza que deseja apagar este vagaHotel?"
+						icon="pi pi-info-circle" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					responsive="true" width="350">
+					<p:commandButton value="Cancelar" type="button"
+						styleClass="ui-confirmdialog-no ui-button-flat" />
+					<p:commandButton value="Apagar" type="button"
+						styleClass="ui-confirmdialog-yes" />
+				</p:confirmDialog>
+			</p:column>
+		
+		</p:dataTable>
+
+	</ui:define>
+
+</ui:composition>

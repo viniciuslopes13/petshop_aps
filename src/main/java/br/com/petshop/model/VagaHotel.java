@@ -27,9 +27,6 @@ public class VagaHotel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false)
-	private int numeroQuarto;
-	
 	@Column(length = 200, nullable = false)
 	private String descricao;
 	
