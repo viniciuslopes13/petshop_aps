@@ -22,7 +22,9 @@
 			</p:column>
 		
 			<p:column headerText="Preço">
-				<h:outputText value="#{servico.preco}" />
+				<h:outputText value="#{servico.preco}">
+					<f:convertNumber minFractionDigits="2" type="currency"/>
+				</h:outputText>
 			</p:column>
 			
 			<p:column>
@@ -38,7 +40,7 @@
 					<f:setPropertyActionListener value="#{servico}"
 						target="#{servicoMBean.servicoSelecionado}" />
 					<p:confirm header="Confirmação"
-						message="Tem certeza que deseja apagar este cliente?"
+						message="Tem certeza que deseja apagar este serviço?"
 						icon="pi pi-info-circle" />
 				</p:commandButton>
 

@@ -1,0 +1,64 @@
+<ui:composition template="/template/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+		
+		<p:commandButton value="Novo Produto" action="#{homeMBean.novoProduto}" style="margin-left:2.5%"/>
+
+		<p:dataTable id="dt-produtos" var="produto" value="#{produtoMBean.listProdutos}"
+		rows="10" paginator="true" paginatorPosition="bottom" style="width: 95%; margin: auto;padding-top: 20px;"
+		widgetVar="produtoTable" filteredValue="#{produtoMBean.listProdutos}" rowKey="#{produto.id}">
+		
+			<p:column headerText="ID">
+				<h:outputText value="#{produto.id}" />
+			</p:column>
+			
+			<p:column headerText="Descrição">
+				<h:outputText value="#{produto.descricao}" />
+			</p:column>
+		
+			<p:column headerText="Preço">
+				<h:outputText value="#{produto.preco}" >
+					<f:convertNumber minFractionDigits="2" type="currency"/>
+				</h:outputText>
+			</p:column>
+			
+			<p:column headerText="Estoque">
+				<h:outputText value="#{produto.quantidadeEstoque}" />
+			</p:column>
+			
+			<p:column>
+				<p:commandButton icon="pi pi-pencil" styleClass="edit-button rounded-button ui-button-info"
+					action="#{homeMBean.atualizarProduto}">
+					<f:setPropertyActionListener value="#{produto}"
+						target="#{produtoMBean.produtoSelecionado}" />
+				</p:commandButton>
+				
+				<p:commandButton class="ui-button-danger rounded-button" style="margin-left:2%"
+					icon="pi pi-trash" update="dt-produtos"
+					action="#{produtoMBean.apagar}">
+					<f:setPropertyActionListener value="#{produto}"
+						target="#{produtoMBean.produtoSelecionado}" />
+					<p:confirm header="Confirmação"
+						message="Tem certeza que deseja apagar este produto?"
+						icon="pi pi-info-circle" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					responsive="true" width="350">
+					<p:commandButton value="Cancelar" type="button"
+						styleClass="ui-confirmdialog-no ui-button-flat" />
+					<p:commandButton value="Apagar" type="button"
+						styleClass="ui-confirmdialog-yes" />
+				</p:confirmDialog>
+			</p:column>
+		
+		</p:dataTable>
+
+	</ui:define>
+
+</ui:composition>

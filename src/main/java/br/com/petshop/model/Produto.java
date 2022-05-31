@@ -31,4 +31,7 @@ public class Produto {
 	@Column(precision = 10, scale = 2, nullable = false)
 	private double preco;
 	
+	@Column(nullable = false)
+	private int quantidadeEstoque;
+	
 }
