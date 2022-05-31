@@ -1,6 +1,6 @@
 package br.com.petshop.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,8 +39,9 @@ public class CarteiraVacina {
 	@JoinColumn(name = "vacina_id")
 	private Vacina vacina;
 	
-	@Column(name ="dataVacina" ,columnDefinition = "DATE", nullable = false)
-	private LocalDate dataVacina;
+	@Temporal(TemporalType.DATE)
+	@Column(name ="dataVacina" , nullable = false)
+	private Date dataVacina;
 	
 	@Column(length = 200, nullable = false)
 	private String informacoes;

@@ -1,0 +1,74 @@
+<ui:composition template="/template/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+		<h:form>
+			<span class="ui-float-label" style="margin-bottom:20px; margin-left: 2.5%"> 
+		        <p:outputLabel for="animal" value="Animal: " />
+		        <p:selectOneMenu id="animal" value="#{consultaCarteiraVacinaMBean.animal.id}" effect="fold" editable="true" 
+		        	filter="true" filterMatchMode="contains">
+		            <f:selectItem itemLabel="Selecione" itemValue="" />
+		            <f:selectItems value="#{animalMBean.listAnimais}" var="animal"
+		            itemLabel="ID #{animal.id} - #{animal.nome}" itemValue="#{animal.id}"/>
+		        </p:selectOneMenu>
+		        <p:commandButton value="Buscar" action="#{consultaCarteiraVacinaMBean.listar}"
+		        update="dt-carteiraVacina" style="margin-left: 1%"/>
+			</span>
+		</h:form>
+
+		<p:dataTable id="dt-carteiraVacina" var="carteiraVacina" value="#{consultaCarteiraVacinaMBean.vacinas}"
+		rows="10" paginator="true" paginatorPosition="bottom" style="width: 95%; margin: auto;padding-top: 20px;"
+		widgetVar="carteiraVacinaTable" filteredValue="#{consultaCarteiraVacinaMBean.vacinas}" rowKey="#{carteiraVacina.id}">
+		
+			<p:column headerText="ID">
+				<h:outputText value="#{carteiraVacina.id}" />
+			</p:column>
+			
+			<p:column headerText="Vacina">
+				<h:outputText value="#{carteiraVacina.vacina.descricao}" />
+			</p:column>
+			
+			<p:column headerText="Data">
+				<h:outputText value="#{carteiraVacina.dataVacina}" />
+			</p:column>
+			
+			<p:column headerText="Informações">
+				<h:outputText value="#{carteiraVacina.informacoes}" />
+			</p:column>
+			
+			<p:column>
+				<p:commandButton icon="pi pi-pencil" styleClass="edit-button rounded-button ui-button-info"
+					action="#{homeMBean.atualizarCarteiraVacina}">
+					<f:setPropertyActionListener value="#{carteiraVacina}"
+						target="#{consultaCarteiraVacinaMBean.carteiraSelecionada}" />
+				</p:commandButton>
+				
+				<p:commandButton class="ui-button-danger rounded-button" style="margin-left:2%"
+					icon="pi pi-trash" update="dt-carteiraVacina"
+					action="#{consultaCarteiraVacinaMBean.apagar}">
+					<f:setPropertyActionListener value="#{carteiraVacina}"
+						target="#{consultaCarteiraVacinaMBean.carteiraSelecionada}" />
+					<p:confirm header="Confirmação"
+						message="Tem certeza que deseja apagar esta vacina?"
+						icon="pi pi-info-circle" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					responsive="true" width="350">
+					<p:commandButton value="Cancelar" type="button"
+						styleClass="ui-confirmdialog-no ui-button-flat" />
+					<p:commandButton value="Apagar" type="button"
+						styleClass="ui-confirmdialog-yes" />
+				</p:confirmDialog>
+				 
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+</ui:composition>

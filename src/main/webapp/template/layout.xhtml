@@ -28,7 +28,13 @@
 				
 				<p:menuitem value="Hotel" icon="pi pi-map-marker" action="#{homeMBean.listVagasHotel}"/>
 				
-				<p:menuitem value="Vacina" icon="pi pi-heart" action="#{homeMBean.listVacinas}"/>
+				<p:submenu label="Vacina" icon="pi pi-heart">
+					<p:menuitem value="Tipos de vacinas" action="#{homeMBean.listVacinas}"/>
+					<p:menuitem value="Vacinar animal" action="#{homeMBean.vacinarAnimal}"/>
+					<p:menuitem value="Consultar vacinas de animal" action="#{homeMBean.consultaVacinaAnimal}"/>
+				</p:submenu>
+				
+				
 				
 			</p:menubar>
 		</h:form>
