@@ -50,7 +50,7 @@ public class VacinaMBean {
 		vacinaSelecionada = new Vacina();
 		listVacinas = this.listar();
 		Mensagem.exibir(FacesMessage.SEVERITY_INFO, "Vacina atualizada com sucesso!");
-		return "/Vacina/listVacinas?faces-redirect=true";
+		return "/vacina/listVacinas?faces-redirect=true";
 	}
 	
 	public void apagar() {
