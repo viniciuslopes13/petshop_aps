@@ -41,12 +41,6 @@ public class AnimalMBean {
 	}
 	
 	public void adicionar() {
-		/*AnimalDAO animalDAO = new AnimalDAO();
-		novoAnimal.setDono(dono);
-		animalDAO.salvar(novoAnimal);
-		novoAnimal = new Animal();
-		listAnimais = this.listar();
-		Mensagem.exibir(FacesMessage.SEVERITY_INFO, "Animal cadastrado com sucesso!");*/
 		GenericDAO genericDAO = new GenericDAO();
 		novoAnimal.setDono(dono);
 		genericDAO.salvar(novoAnimal);

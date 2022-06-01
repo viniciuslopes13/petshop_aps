@@ -55,6 +55,14 @@ public class HomeMBean {
 		return "/servico/atualizarServico?faces-redirect=true";
 	}
 	
+	public String agendarServico() {
+		return "/servico/agendarServico?faces-redirect=true";
+	}
+	
+	public String verAgendamentos() {
+		return "/servico/verAgendamentos?faces-redirect=true";
+	}
+	
 	/*ROTAS PRODUTOS*/
 	public String novoProduto() {
 		return "/produto/cadastroProduto?faces-redirect=true";

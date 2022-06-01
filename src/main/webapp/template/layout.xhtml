@@ -24,7 +24,11 @@
 				
 				<p:menuitem value="Produto" icon="pi pi-shopping-cart" action="#{homeMBean.listProdutos}"/>
 				
-				<p:menuitem value="Serviço" icon="pi pi-cog" action="#{homeMBean.listServicos}"/>
+				<p:submenu label="Serviço" icon="pi pi-cog">
+					<p:menuitem value="Cadastro/Listagem de Serviços" action="#{homeMBean.listServicos}"/>
+					<p:menuitem value="Fazer agendamento" action="#{homeMBean.agendarServico}"/>
+					<p:menuitem value="Ver agendamentos" action="#{homeMBean.verAgendamentos}"/>
+				</p:submenu>
 				
 				<p:submenu label="Hotel" icon="pi pi-map-marker" >
 					<p:menuitem value="Gerenciar vagas" action="#{homeMBean.listVagasHotel}"/>

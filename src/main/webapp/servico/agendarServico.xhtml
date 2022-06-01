@@ -1,0 +1,60 @@
+<ui:composition template="/template/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+		<h:form>
+			<p:panel id="basic" header="Agendamento de Serviço"
+				style="margin-bottom:20px">
+				
+				<span class="ui-float-label" style="margin-bottom:20px"> 
+			        <p:outputLabel for="cliente" value="Dono: " />
+			        <p:selectOneMenu id="cliente" value="#{agendamentoMBean.cliente.id}" effect="fold" editable="true" 
+			        	filter="true" filterMatchMode="contains" required="true" requiredMessage="Cliente: Campo Obrigatório.">
+			            <f:selectItem itemLabel="Selecione" itemValue="" />
+			            <f:selectItems value="#{clienteDataTableMBean.listClientes}" var="cliente"
+			            itemLabel="ID #{cliente.id} - #{cliente.nome}" itemValue="#{cliente.id}"/>
+			        </p:selectOneMenu>
+				</span>
+				
+				<span class="ui-float-label" style="margin-bottom:20px"> 
+			        <p:outputLabel for="servico" value="Dono: " />
+			        <p:selectOneMenu id="servico" value="#{agendamentoMBean.servico.id}" effect="fold" editable="true" 
+			        	filter="true" filterMatchMode="contains" required="true" requiredMessage="Serviço: Campo Obrigatório.">
+			            <f:selectItem itemLabel="Selecione" itemValue="" />
+			            <f:selectItems value="#{servicoMBean.listServicos}" var="servico"
+			            itemLabel="ID #{servico.id} - #{servico.descricao}" itemValue="#{servico.id}"/>
+			        </p:selectOneMenu>
+				</span>
+				
+				<span class="ui-float-label" style="margin-bottom:20px"> 
+					<p:outputLabel for="dataAgendada" value="Data Agendada:"/>
+					<p:datePicker id="dataAgendada" value="#{agendamentoMBean.agendamento.dataAgendada}"
+					required="true" requiredMessage="Data Agendada: Campo Obrigatório." pattern="dd/MM/yyyy"/>
+				</span>
+				
+				<span class="ui-float-label" style="margin-bottom:20px">
+					<p:inputNumber id="preco" value="#{agendamentoMBean.agendamento.precoTotal}" decimalPlaces="2"
+					required="true" requiredMessage="Preço: Campo Obrigatório." disabled="true"/>
+					<p:outputLabel for="@previous" value="Preço: " />
+					<p:commandButton value="Calcular valor" id="calcular" action="#{agendamentoMBean.atualizarValor}"
+					style="margin-right:20px;" styleClass="ui-priority-primary" update="@this preco"/>
+				</span>
+				
+				<span class="ui-float-label" style="margin-bottom:20px"> 
+					<p:inputText id="informacoes" value="#{agendamentoMBean.agendamento.informacoes}" 
+					required="true" requiredMessage="Informações: Campo Obrigatório."/> 
+					<p:outputLabel for="@previous" value="Informações" />
+				</span>
+				
+				<p:commandButton value="Salvar" id="salvar" action="#{agendamentoMBean.adicionar}" 
+				style="margin-right:20px;" styleClass="ui-priority-primary" update="@this basic"/>
+				
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
