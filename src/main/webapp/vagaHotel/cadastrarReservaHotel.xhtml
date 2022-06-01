@@ -1,0 +1,61 @@
+<ui:composition template="/template/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+		<h:form>
+			<p:panel id="basic" header="Cadastro de reserva no Hotel"
+				style="margin-bottom:20px">
+								
+				<span style="margin-bottom:20px;"> 
+			        <p:outputLabel for="animal" value="Animal: " />
+			        <p:selectOneMenu id="animal" value="#{cadastrarReservaHotelMBean.animal.id}" effect="fold" editable="true" 
+			        	filter="true" filterMatchMode="contains" required="true" requiredMessage="Animal: Campo Obrigatório.">
+			            <f:selectItem itemLabel="Selecione" itemValue="" />
+			            <f:selectItems value="#{animalMBean.listAnimais}" var="animal"
+			            itemLabel="ID #{animal.id} - #{animal.nome}" itemValue="#{animal.id}"/>
+			        </p:selectOneMenu>
+				</span>
+				<br/>
+				<span  style="margin-bottom:20px;"> 
+			        <p:outputLabel for="vaga" value="Vaga: " />
+			        <p:selectOneMenu id="vaga" value="#{cadastrarReservaHotelMBean.vagaHotel.id}" effect="fold" editable="true" 
+			        	filter="true" filterMatchMode="contains" required="true" requiredMessage="Vaga: Campo Obrigatório.">
+			            <f:selectItem itemLabel="Selecione" itemValue="" />
+			            <f:selectItems value="#{vagaHotelMBean.listVagasHotel}" var="vaga"
+			            itemLabel="ID #{vaga.id} - #{vaga.descricao}" itemValue="#{vaga.id}"/>
+			        </p:selectOneMenu>
+				</span>
+				<br/>
+				<span style="margin-bottom:20px"> 
+					<p:outputLabel for="dataEntrada" value="Data de entrada:"/>
+					<p:datePicker id="dataEntrada" value="#{cadastrarReservaHotelMBean.reservaVagaHotel.dataEntrada}"
+					required="true" requiredMessage="Data de Entrada: Campo Obrigatório." pattern="dd/MM/yyyy"/>
+				</span>
+				<br/>
+				<span  style="margin-bottom:25px"> 
+					<p:outputLabel for="dataSaída" value="Data de saída:"/>
+					<p:datePicker id="dataSaída" value="#{cadastrarReservaHotelMBean.reservaVagaHotel.dataSaida}"
+					required="true" requiredMessage="Data de Entrada: Campo Obrigatório." pattern="dd/MM/yyyy"/>
+				</span>
+				
+				<span style="margin-bottom:20px">
+					<br/> 
+					<p:outputLabel for="valorReserva" value="Valor da reserva: " />
+					<p:inputNumber id="valorReserva" value="#{cadastrarReservaHotelMBean.valorReserva}" decimalPlaces="2"
+					required="true" requiredMessage="Valor da reserva: Campo Obrigatório." disabled="true"/> 
+					<p:commandButton value="Calcular valor" id="calcular" action="#{cadastrarReservaHotelMBean.calcularValorDiaria}"
+					style="margin-right:20px;" styleClass="ui-priority-primary" update="@this valorReserva"/>
+				</span>
+				<br/>
+				<p:commandButton value="Salvar" id="salvar" action="#{cadastrarReservaHotelMBean.adicionar}" 
+				style="margin-right:20px;" styleClass="ui-priority-primary" update="@this basic"/>
+				
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -26,7 +26,11 @@
 				
 				<p:menuitem value="Serviço" icon="pi pi-cog" action="#{homeMBean.listServicos}"/>
 				
-				<p:menuitem value="Hotel" icon="pi pi-map-marker" action="#{homeMBean.listVagasHotel}"/>
+				<p:submenu label="Hotel" icon="pi pi-map-marker" >
+					<p:menuitem value="Gerenciar vagas" action="#{homeMBean.listVagasHotel}"/>
+					<p:menuitem value="Cadastrar uma reserva" action="#{homeMBean.cadastrarReservaHotel}"/>
+					<p:menuitem value="Ver reservas" action="#{homeMBean.verReservas}"/>
+				</p:submenu>
 				
 				<p:submenu label="Vacina" icon="pi pi-heart">
 					<p:menuitem value="Tipos de vacinas" action="#{homeMBean.listVacinas}"/>

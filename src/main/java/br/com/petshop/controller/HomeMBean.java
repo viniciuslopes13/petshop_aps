@@ -106,4 +106,12 @@ public class HomeMBean {
 		return "/vagaHotel/atualizarVagaHotel?faces-redirect=true";
 	}
 	
+	public String cadastrarReservaHotel() {
+		return "/vagaHotel/cadastrarReservaHotel?faces-redirect=true";
+	}
+	
+	public String verReservas() {
+		return "/vagaHotel/verReservas?faces-redirect=true";
+	}
+	
 }

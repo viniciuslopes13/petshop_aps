@@ -1,6 +1,7 @@
 package br.com.petshop.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -37,11 +40,13 @@ public class ReservaVagaHotel {
 	@JoinColumn(name = "vaga_id")
 	private VagaHotel vaga;
 	
-	@Column(name ="dataEntrada" ,columnDefinition = "DATE", nullable = false)
-	private LocalDate dataEntrada;
+	@Temporal(TemporalType.DATE)
+	@Column(name ="dataEntrada" , nullable = false)
+	private Date dataEntrada;
 	
-	@Column(name ="dataSaida" ,columnDefinition = "DATE", nullable = false)
-	private LocalDate dataSaida;
+	@Temporal(TemporalType.DATE)
+	@Column(name ="dataSaida" , nullable = false)
+	private Date dataSaida;
 	
 	@Column(precision = 10, scale = 2, nullable = false)
 	private double valorReserva;

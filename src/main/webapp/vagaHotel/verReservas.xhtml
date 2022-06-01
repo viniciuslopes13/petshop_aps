@@ -1,0 +1,76 @@
+<ui:composition template="/template/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+		<h:form>
+			<span class="ui-float-label" style="margin-bottom:20px; margin-left: 2.5%"> 
+					<p:outputLabel for="dataBusca" value="Data de entrada:"/>
+					<p:datePicker id="dataBusca" value="#{consultaReservasMBean.dataBusca}"
+					required="true" requiredMessage="Data de Entrada: Campo Obrigatório." pattern="dd/MM/yyyy"/>
+		        <p:commandButton value="Buscar" action="#{consultaReservasMBean.listar}"
+		        update="dt-reservas" style="margin-left: 1%"/>
+			</span>
+		</h:form>
+
+		<p:dataTable id="dt-reservas" var="reserva" value="#{consultaReservasMBean.reservas}"
+		rows="10" paginator="true" paginatorPosition="bottom" style="width: 95%; margin: auto;padding-top: 20px;"
+		widgetVar="reservaTable" filteredValue="#{consultaReservasMBean.reservas}" rowKey="#{reserva.id}">
+		
+			<p:column headerText="ID">
+				<h:outputText value="#{reserva.id}" />
+			</p:column>
+			
+			<p:column headerText="Animal">
+				<h:outputText value="#{reserva.hospede.nome}" />
+			</p:column>
+			
+			<p:column headerText="Quarto">
+				<h:outputText value="#{reserva.vaga.id}" />
+			</p:column>
+			
+			<p:column headerText="Data de Entrada">
+				<p:datePicker value="#{reserva.dataEntrada}" disabled="true">
+				 	<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+				</p:datePicker>
+			</p:column>
+			
+			<p:column headerText="Data de Saída">
+				<p:datePicker value="#{reserva.dataSaida}" disabled="true"/>
+			</p:column>
+			
+			<p:column headerText="Valor da Reserva">
+				<h:outputText value="#{reserva.valorReserva}">
+					<f:convertNumber minFractionDigits="2" type="currency"/>
+				</h:outputText>
+			</p:column>
+			
+			<p:column>				
+				<p:commandButton class="ui-button-danger rounded-button" style="margin-left:2%"
+					icon="pi pi-trash" update="dt-reservas"
+					action="#{consultaReservasMBean.apagar}">
+					<f:setPropertyActionListener value="#{reserva}"
+						target="#{consultaReservasMBean.reservaSelecionada}" />
+					<p:confirm header="Confirmação"
+						message="Tem certeza que deseja apagar esta reserva?"
+						icon="pi pi-info-circle" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					responsive="true" width="350">
+					<p:commandButton value="Cancelar" type="button"
+						styleClass="ui-confirmdialog-no ui-button-flat" />
+					<p:commandButton value="Apagar" type="button"
+						styleClass="ui-confirmdialog-yes" />
+				</p:confirmDialog>
+				 
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+</ui:composition>
