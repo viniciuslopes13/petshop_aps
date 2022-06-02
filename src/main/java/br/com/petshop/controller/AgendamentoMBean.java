@@ -32,7 +32,7 @@ public class AgendamentoMBean {
 		agendamento = new Agendamento();
 		cliente = new ClienteUser();
 		servico = new Servico();
-		agendamentos = new ArrayList<Object>();
+		agendamentos = this.listar();
 		agendamentoSelecionado = new Agendamento();
 	}
 	
@@ -75,6 +75,6 @@ public class AgendamentoMBean {
 		agendamentoSelecionado = new Agendamento();
 		agendamentos = this.listar();
 		Mensagem.exibir(FacesMessage.SEVERITY_INFO, "Agendamento atualizado com sucesso!");
-		return "/animal/agendamentos?faces-redirect=true";
+		return "/servico/verAgendamentos?faces-redirect=true";
 	}
 }
